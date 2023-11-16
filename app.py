@@ -54,11 +54,16 @@ def bot_response(thread_id, assistant_id):
     return text
 
 if st.button("Submit"):
-    user_message = user_input
-    create_message(user_message, session_state.thread_id)
-    bot_reply = bot_response(session_state.thread_id, session_state.assistant_id)
-    session_state.messages.insert(0, ("User", user_message))
-    session_state.messages.insert(0, ("Bot", bot_reply))
+     with st.spinner("Processing"):
+        user_message = user_input
+        create_message(user_message, session_state.thread_id)
+        bot_reply = bot_response(session_state.thread_id, session_state.assistant_id)
+
+        # session_state.messages.insert(0, ("User", user_message))
+        # session_state.messages.insert(0, ("Bot", bot_reply))
+        
+        session_state.messages.append(("User", user_message))
+        session_state.messages.append(("Bot", bot_reply))
 
 # Display all messages
 for role, message in session_state.messages:
