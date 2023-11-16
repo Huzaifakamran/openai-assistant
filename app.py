@@ -71,6 +71,6 @@ if st.button("Submit"):
         print(thread_id)
         message = create_message(user_input,thread_id)
         text = bot_response(thread_id,assistant_id)
-        st.write(text)
+        st.write("Bot:",text)
 
 
