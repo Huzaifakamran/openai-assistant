@@ -6,7 +6,8 @@ import os
 load_dotenv()
 
 client = OpenAI(
-    api_key= os.getenv("OPENAI_API_KEY"),
+    # api_key= os.getenv("OPENAI_API_KEY"),
+    api_key = st.secrets["OPENAI_API_KEY"]
 )
 
 def get_session_state():
@@ -31,7 +32,7 @@ if session_state.first_time:
     #Initializing a thread
     thread = client.beta.threads.create()
     session_state.thread_id = thread.id
-    session_state.assistant_id = "asst_QZiMHSTvtm7GdS2CCli6FfKJ"
+    session_state.assistant_id = st.secrets["ASSISTANT_ID"]
     session_state.first_time = False
 
 user_input = st.text_input(label= "Enter something:",placeholder= "Type here...")
